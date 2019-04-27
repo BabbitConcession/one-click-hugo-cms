@@ -15,6 +15,105 @@ collections: # A list of collections the CMS should be able to edit
       - {label: "Intro Blurb", name: "description", widget: "text"}
       - {label: "Image", name: "image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
+  - name: "device"
+    identifier_field: deviceID
+    label: "Device"
+    description: "Any kind of musical device (e.g., synth, MIDI controller, drum machine)"
+    folder: "site/content/device"
+    create: true  # Users may create new devices
+    delete: false  # Users may NOT delete existing devices
+    format: "yaml"
+    extension: "yaml"
+    fields:
+      # Device Metadata
+      - label: "Metadata"
+        name: "metadata"
+        widget: "object"
+        tip: "Basic record keeping information for this device."
+        fields:
+          - {label: "Device ID", name: "deviceID", widget: "string", tip: "Internal ID for URL and database operations"}
+          - {label: "Name", name: "name", widget: "string", tip: "User-facing display name"}
+          - {label: "Updated Date", name: "date", widget: "datetime", tip: "The datetime this record was last modified"}
+          - {label: "Headline Blurb", name: "summary", widget: "text", tip: "One-sentence description"}
+      
+      # Manufacture Details
+      - {label: "Created By", name: "creator", widget: "relation", collection: "creator", valueField: "name", searchFields: ["name", "summary"], multiple: true, tip: "The Creator of this Device"}
+      - {label: "In Production", name: "in_production", widget: "boolean", tip: "Is this device broadly available new?"}
+      - label: "Announcement"
+        name: "announcement"
+        widget: "object"
+        tip: "Details about the device's official announcement"
+        fields:
+          - {label: "Announcement Date", name: "announced_date", widget: "date", tip: "The date the product was officially announced", default: ""}
+          - {label: "Street Date", name: "street_date", widget: "date", tip: "The date the product was available in stores", default: ""}
+          - {label: "Announcement Link", name: "announcement_url", widget: "text", tip: "Link to the official blog post, tweet, press release, etc."}
+          - {label: "Anncounced Price", name: "price_announced", widget: "object", tip: "The initially announced price", fields: [
+            {label: "Amount", name: "amount", widget: "number", valueType: "float", min: 0, step: 0.01},
+            {label: "Currency", name: "currency", widget: "string", default: "USD", tip: "ISO 4217 Currency Code (USD, EUR, GBP)"}
+            ]}
+      - label: "Retirement"
+        name: "retirement"
+        widget: "object"
+        tip: "Details about the device's official discontinuation / retirement"
+        fields:
+          - {label: "Retirement Date", name: "retirement_date", widget: "date", tip: "The date the product was officially retired", default: ""}
+          - {label: "Retirement Link", name: "retirement_url", widget: "text", tip: "Link to the official blog post, tweet, press release, etc."}
+      
+      # Physical Details
+      - label: "Size & Weight"
+        name: "dimensions"
+        widget: "object"
+        tip: "Physical size and weight"
+        fields:
+          # Dimensions
+          - {label: "Distance Units", name: "distance_units", widget: "select", tip: "Units used for measuring length, width, and height", default: "inches", options: ["Inches", "Millimeters"]}
+          - {label: "Length", name: "length", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the front to the back of the device."}
+          - {label: "Width", name: "width", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the left to the right of the device."}
+          - {label: "Height", name: "height", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the top to the bottom of the device."}
+          # Weight
+          - {label: "Weight Units", name: "weight_units", widget: "select", tip: "Units used for measuring weight", default: "inches", options: ["Pounds", "Kilograms"]}
+          - {label: "Weight", name: "weight", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "The advertised weight of the device."}
+
+      # TODO
+      # LINK: product family
+      # Rack mountable: Native, First Party, Third Party, No
+      # Sound Engine
+      # Human Interface
+      # Machine Interface
+      # Firmware
+
+      # Extended Description
+      - {label: "Overview", name: "overview", widget: "markdown", tip: "Long form description"}
+
+      - label: "Images"
+        name: "images"
+        widget: "object"
+        tip: "Images of this device"
+        fields:
+          # Hero image
+          - {label: "Main Image", name: "main_image", widget: "image", required: false, tip: "Primary marketing image. Any angle or lighting is acceptable."}
+          # Standard angles
+          - {label: "Top View", name: "view_top", widget: "image", required: false, tip: "Picture taken from direct overhead"}
+          - {label: "Bottom View", name: "view_bottom", widget: "image", required: false, tip: "Picture taken from directly below"}
+          - {label: "Front View", name: "view_front", widget: "image", required: false, tip: "Picture taken from directly in front"}
+          - {label: "Back View", name: "view_back", widget: "image", required: false, tip: "Picture taken from directly behind"}
+          - {label: "Left View", name: "view_left", widget: "image", required: false, tip: "Picture taken directly from the left side"}
+          - {label: "Right View", name: "view_right", widget: "image", required: false, tip: "Picture taken directly from the right side"}
+      
+  - name: "creator"
+    label: "Creator"
+    description: "A company or person who makes & markets devices."
+    folder: "site/content/creator"
+    create: true  # Users may create new creator
+    delete: false  # Users may NOT delete existing creator
+    identifier_field: name
+    format: "yml"
+    extension: "yml"
+    fields:
+      - {label: "Name", name: "name", widget: "string"}
+      - {label: "Headline Blurb", name: "summary", widget: "string", tip: "One-sentence description"}
+      - {label: "Logo", name: "logo", widget: "image", required: false, tip: "Creator's logo"}
+      - {label: "Overview", name: "overview", widget: "markdown", tip: "Long form description"}
   - name: "pages"
     label: "Pages"
     files:
