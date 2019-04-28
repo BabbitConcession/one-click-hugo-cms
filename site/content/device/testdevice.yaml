@@ -1,0 +1,27 @@
+deviceid: testdevice
+name: Test Device
+date: 2019-04-28T03:10:38.206Z
+summary: just a test
+creator:
+  - Moog
+in_production: true
+announcement:
+  announced_date: 2019-04-04T04:00:00.000Z
+  announcement_url: 'https://www.google.com'
+  price_announced:
+    amount: 5000
+    currency: USD
+  street_date: 2019-04-10T04:00:00.000Z
+retirement:
+  retirement_date: 2019-04-18T04:00:00.000Z
+  retirement_url: 'https://www.google.com'
+dimensions:
+  distance_units: Millimeters
+  height: 100
+  length: 100
+  weight: 10
+  weight_units: Pounds
+  width: 100
+overview: Very interesting disucssion about this nifty little device!
+images:
+  main_image: /img/about-direct-sourcing.jpg
