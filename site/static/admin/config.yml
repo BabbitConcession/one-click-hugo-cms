@@ -20,7 +20,7 @@ collections: # A list of collections the CMS should be able to edit
  
  # Main Collection: Device
   - name: "device"
-    identifier_field: deviceID
+    identifier_field: deviceid
     label: "Device"
     description: "Any kind of musical device (e.g., synth, MIDI controller, drum machine)"
     folder: "site/content/device"
@@ -30,16 +30,11 @@ collections: # A list of collections the CMS should be able to edit
     extension: "yaml"
     fields:
       # Device Metadata
-      - label: "Metadata"
-        name: "metadata"
-        widget: "object"
-        tip: "Basic record keeping information for this device."
-        fields:
-          - {label: "Device ID", name: "deviceID", widget: "string", tip: "Internal ID for URL and database operations"}
-          - {label: "Name", name: "name", widget: "string", tip: "User-facing display name"}
-          - {label: "Updated Date", name: "date", widget: "datetime", tip: "The datetime this record was last modified"}
-          - {label: "Headline Blurb", name: "summary", widget: "string", tip: "One-sentence description"}
-      
+      - {label: "Device ID", name: "deviceid", widget: "string", tip: "Internal ID for URL and database operations"}    
+      - {label: "Name", name: "name", widget: "string", tip: "User-facing display name"}
+      - {label: "Updated Date", name: "date", widget: "datetime", tip: "The datetime this record was last modified"}
+      - {label: "Headline Blurb", name: "summary", widget: "string", tip: "One-sentence description"}
+  
       # Manufacture Details
       - {label: "Created By", name: "creator", widget: "relation", collection: "creator", valueField: "name", searchFields: ["name", "summary"], multiple: true, tip: "The Creator of this Device"}
       - {label: "In Production", name: "in_production", widget: "boolean", tip: "Is this device broadly available new?"}
@@ -70,12 +65,12 @@ collections: # A list of collections the CMS should be able to edit
         tip: "Physical size and weight"
         fields:
           # Dimensions
-          - {label: "Distance Units", name: "distance_units", widget: "select", tip: "Units used for measuring length, width, and height", default: "inches", options: ["Inches", "Millimeters"]}
+          - {label: "Distance Units", name: "distance_units", widget: "select", tip: "Units used for measuring length, width, and height", default: "Inches", options: ["Inches", "Millimeters"]}
           - {label: "Length", name: "length", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the front to the back of the device."}
           - {label: "Width", name: "width", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the left to the right of the device."}
           - {label: "Height", name: "height", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "Distance from the top to the bottom of the device."}
           # Weight
-          - {label: "Weight Units", name: "weight_units", widget: "select", tip: "Units used for measuring weight", default: "inches", options: ["Pounds", "Kilograms"]}
+          - {label: "Weight Units", name: "weight_units", widget: "select", tip: "Units used for measuring weight", default: "Pounds", options: ["Pounds", "Kilograms"]}
           - {label: "Weight", name: "weight", widget: "number", valueType: "float", min: 0, step: 0.001, default: 0, tip: "The advertised weight of the device."}
 
       # TODO
