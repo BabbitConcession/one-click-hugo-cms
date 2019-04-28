@@ -34,7 +34,7 @@ collections: # A list of collections the CMS should be able to edit
           - {label: "Device ID", name: "deviceID", widget: "string", tip: "Internal ID for URL and database operations"}
           - {label: "Name", name: "name", widget: "string", tip: "User-facing display name"}
           - {label: "Updated Date", name: "date", widget: "datetime", tip: "The datetime this record was last modified"}
-          - {label: "Headline Blurb", name: "summary", widget: "text", tip: "One-sentence description"}
+          - {label: "Headline Blurb", name: "summary", widget: "string", tip: "One-sentence description"}
       
       # Manufacture Details
       - {label: "Created By", name: "creator", widget: "relation", collection: "creator", valueField: "name", searchFields: ["name", "summary"], multiple: true, tip: "The Creator of this Device"}
@@ -46,7 +46,7 @@ collections: # A list of collections the CMS should be able to edit
         fields:
           - {label: "Announcement Date", name: "announced_date", widget: "date", tip: "The date the product was officially announced", default: ""}
           - {label: "Street Date", name: "street_date", widget: "date", tip: "The date the product was available in stores", default: ""}
-          - {label: "Announcement Link", name: "announcement_url", widget: "text", tip: "Link to the official blog post, tweet, press release, etc."}
+          - {label: "Announcement Link", name: "announcement_url", widget: "string", tip: "Link to the official blog post, tweet, press release, etc."}
           - {label: "Anncounced Price", name: "price_announced", widget: "object", tip: "The initially announced price", fields: [
             {label: "Amount", name: "amount", widget: "number", valueType: "float", min: 0, step: 0.01},
             {label: "Currency", name: "currency", widget: "string", default: "USD", tip: "ISO 4217 Currency Code (USD, EUR, GBP)"}
@@ -57,7 +57,7 @@ collections: # A list of collections the CMS should be able to edit
         tip: "Details about the device's official discontinuation / retirement"
         fields:
           - {label: "Retirement Date", name: "retirement_date", widget: "date", tip: "The date the product was officially retired", default: ""}
-          - {label: "Retirement Link", name: "retirement_url", widget: "text", tip: "Link to the official blog post, tweet, press release, etc."}
+          - {label: "Retirement Link", name: "retirement_url", widget: "string", tip: "Link to the official blog post, tweet, press release, etc."}
       
       # Physical Details
       - label: "Size & Weight"
